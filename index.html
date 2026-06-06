@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vollow — Coming Soon</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-deep: #120824;
+      --bg-glow: #1e0f3a;
+      --text: #f4f0fa;
+      --text-muted: #c4b8d9;
+      --arrow: #9b7fd4;
+      --accent: #7c5cbf;
+      --accent-hover: #946fd4;
+      --input-bg: rgba(255, 255, 255, 0.06);
+      --input-border: rgba(255, 255, 255, 0.12);
+      --input-focus: rgba(155, 127, 212, 0.5);
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg-deep);
+      background-image:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124, 92, 191, 0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(91, 58, 150, 0.12) 0%, transparent 60%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    main {
+      width: 100%;
+      max-width: 36rem;
+      text-align: center;
+    }
+
+    .brand {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+    }
+
+    /* Hero — arrows stacked on a shared centre axis to form the V logo */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.05em;
+      margin-bottom: 2rem;
+    }
+
+    .hero-line {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      font-size: clamp(2.4rem, 9vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      white-space: nowrap;
+    }
+
+    .hero-line .word {
+      text-align: right;
+      padding-right: 0.18em;
+      color: var(--text);
+    }
+
+    .hero-line .arrow {
+      color: var(--arrow);
+      font-weight: 800;
+      width: 0.55em;
+      text-align: center;
+    }
+
+    .tagline {
+      font-size: clamp(1rem, 3.5vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 26rem;
+      margin: 0 auto 2.75rem;
+      line-height: 1.65;
+    }
+
+    .signup {
+      width: 100%;
+    }
+
+    .signup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 480px) {
+      .signup-form {
+        flex-direction: row;
+        align-items: stretch;
+      }
+    }
+
+    .signup-form input[type="email"] {
+      flex: 1;
+      min-width: 0;
+      padding: 0.9rem 1.1rem;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 0.6rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .signup-form input[type="email"]::placeholder {
+      color: rgba(196, 184, 217, 0.55);
+    }
+
+    .signup-form input[type="email"]:focus {
+      border-color: var(--input-focus);
+      box-shadow: 0 0 0 3px rgba(155, 127, 212, 0.15);
+    }
+
+    .signup-form button {
+      padding: 0.9rem 1.4rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: inherit;
+      color: #fff;
+      background: var(--accent);
+      border: none;
+      border-radius: 0.6rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .signup-form button:hover {
+      background: var(--accent-hover);
+    }
+
+    .signup-form button:active {
+      transform: scale(0.98);
+    }
+
+    @media (min-width: 480px) {
+      .signup-form button {
+        flex-shrink: 0;
+      }
+    }
+
+    .signup-message {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      min-height: 1.4em;
+      color: var(--arrow);
+    }
+
+    .signup-message.error {
+      color: #e892a8;
+    }
+
+    footer {
+      margin-top: 4rem;
+      font-size: 0.8rem;
+      color: rgba(196, 184, 217, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="brand">Vollow</p>
+
+    <section class="hero" aria-label="Vollow tagline">
+      <div class="hero-line">
+        <span class="word">Plan out</span>
+        <span class="arrow" aria-hidden="true">&gt;</span>
+      </div>
+      <div class="hero-line">
+        <span class="word">Pay in</span>
+        <span class="arrow" aria-hidden="true">&lt;</span>
+      </div>
+    </section>
+
+    <p class="tagline">The easiest way to organise group events and split payments with friends.</p>
+
+    <section class="signup">
+      <form class="signup-form" id="signup-form" novalidate>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+          aria-label="Email address"
+        >
+        <button type="submit">Notify me when we launch</button>
+      </form>
+      <p class="signup-message" id="signup-message" role="status" aria-live="polite"></p>
+    </section>
+
+    <footer>&copy; 2026 Vollow</footer>
+  </main>
+
+  <script>
+    const form = document.getElementById('signup-form');
+    const emailInput = document.getElementById('email');
+    const message = document.getElementById('signup-message');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      message.classList.remove('error');
+
+      const email = emailInput.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        message.textContent = 'Please enter a valid email address.';
+        message.classList.add('error');
+        emailInput.focus();
+        return;
+      }
+
+      message.textContent = "You're on the list — we'll be in touch soon.";
+      emailInput.value = '';
+    });
+  </script>
+</body>
+</html>
